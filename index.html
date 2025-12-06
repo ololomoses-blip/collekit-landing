@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Collekit – Fix the System Behind Your Sales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary: #1F3A63;
+      --primary-light: #246BFD;
+      --accent: #4CD964;
+      --dark: #2E2E2E;
+      --light: #F5F5F5;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--dark);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(36, 107, 253, 0.1);
+      color: var(--primary-light);
+      margin-bottom: 12px;
+    }
+
+    .hero {
+      padding: 32px 0 40px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary-light);
+      color: var(--white);
+      border-color: var(--primary-light);
+    }
+
+    .btn-primary:hover {
+      background: #1550c4;
+      border-color: #1550c4;
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--primary-light);
+      border-color: rgba(36, 107, 253, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(36, 107, 253, 0.05);
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: #707070;
+    }
+
+    .hero-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .hero-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .hero-card ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .hero-card li {
+      margin-bottom: 6px;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .hero-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-light);
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-title {
+      font-size: 22px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: 10px;
+      border: 1px solid #e5e5e5;
+      padding: 16px 18px;
+      background: #ffffff;
+      font-size: 14px;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .pill-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--light);
+      font-size: 12px;
+    }
+
+    .list {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .list li {
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+      font-size: 14px;
+    }
+
+    .list li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-light);
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .comparison h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .comparison ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .comparison li {
+      margin-bottom: 6px;
+      padding-left: 18px;
+      position: relative;
+      font-size: 14px;
+    }
+
+    .comparison li::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 14px;
+    }
+
+    .comparison .manual li::before {
+      content: "✕";
+      color: #d9534f;
+    }
+
+    .comparison .systemised li::before {
+      content: "✓";
+      color: var(--accent);
+    }
+
+    .results-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .results-card {
+      border-radius: 10px;
+      background: var(--light);
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+
+    .results-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--light);
+      border-radius: 16px;
+      margin-top: 12px;
+    }
+
+    .cta-section h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .cta-section p {
+      font-size: 14px;
+      margin-bottom: 18px;
+      color: #555;
+    }
+
+    footer {
+      border-top: 1px solid #e5e5e5;
+      margin-top: 32px;
+      padding-top: 16px;
+      font-size: 12px;
+      color: #777;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner,
+      .grid-2,
+      .grid-3,
+      .comparison,
+      .results-strip {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 20px;
+      }
+      .hero h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="tag">For SMEs, agencies and service businesses</div>
+          <h1>Stop losing deals. Fix the system behind your sales.</h1>
+          <p>
+            You don’t need more leads. You need a CRM and follow-up system that turns enquiries into clients — reliably and without chaos.
+          </p>
+          <div class="hero-buttons">
+            <a href="#audit" class="btn btn-primary">Book a Free Systems Audit</a>
+            <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+          </div>
+          <p class="hero-note">
+            30–45 minute review of your CRM, follow-up and funnel. No obligation.
+          </p>
+        </div>
+        <aside class="hero-card">
+          <h3>What we fix first</h3>
+          <ul>
+            <li>Messy or underused CRM</li>
+            <li>Slow or inconsistent follow-up</li>
+            <li>Missing automations and reminders</li>
+            <li>No clear pipeline or reporting</li>
+            <li>Leads slipping through the cracks</li>
+          </ul>
+        </aside>
+      </div>
+    </header>
+
+    <!-- WHAT'S BROKEN / WHAT WE DO -->
+    <section id="problems">
+      <h2 class="section-title">Why your current system is holding you back</h2>
+      <p class="section-subtitle">
+        Most businesses don’t have a lead problem. They have a systems problem.
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What’s usually broken</h3>
+          <ul class="list">
+            <li>Leads managed in inboxes and spreadsheets.</li>
+            <li>CRM set up once and then abandoned.</li>
+            <li>Follow-ups depend on memory and sticky notes.</li>
+            <li>No automation supporting sales or marketing.</li>
+            <li>No reliable dashboard to see what is working.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>What we do instead</h3>
+          <ul class="list">
+            <li>Rebuild your CRM around your real sales process.</li>
+            <li>Add practical automations for follow-up and tasks.</li>
+            <li>Fix your funnel and customer journey from lead to sale.</li>
+            <li>Set up clear dashboards and reporting.</li>
+            <li>Train your team so the system is actually used.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS OVERVIEW -->
+    <section id="results">
+      <h2 class="section-title">Real results from fixing systems — not just leads</h2>
+      <p class="section-subtitle">
+        When the CRM, follow-up and reporting work together, revenue becomes predictable.
+      </p>
+      <div class="results-strip">
+        <div class="results-card">
+          <strong>Healthcare clinic</strong>
+          38% more bookings in 90 days after CRM and follow-up automation — without increasing ad spend.
+        </div>
+        <div class="results-card">
+          <strong>B2B consultancy</strong>
+          2.1× increase in call-to-proposal conversion and 24% more proposals accepted after a full systems rebuild.
+        </div>
+        <div class="results-card">
+          <strong>E-commerce brand</strong>
+          £47,000 additional revenue in 45 days from lifecycle and abandoned cart automation.
+        </div>
+        <div class="results-card">
+          <strong>Real estate agency</strong>
+          27% more viewings and 35% more offers after unifying CRM and automating lead capture.
+        </div>
+        <div class="results-card">
+          <strong>Coaching business</strong>
+          3× more discovery calls and 22% increase in programme sales with nurture sequences and better booking flows.
+        </div>
+        <div class="results-card">
+          <strong>Common thread</strong>
+          Same traffic. Same offers. Better systems behind the scenes.
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works">
+      <h2 class="section-title">How Collekit works with you</h2>
+      <p class="section-subtitle">
+        A simple four-step process to remove chaos and make your sales system predictable.
+      </p>
+      <div class="grid-4 grid-2">
+        <div class="card">
+          <h3>1. Free Systems Audit</h3>
+          <p>
+            We review your CRM, follow-up, funnels and reporting. You get a clear view of what is helping and what is hurting.
+          </p>
+        </div>
+        <div class="card">
+          <h3>2. Systems Blueprint</h3>
+          <p>
+            We map out a practical plan to rebuild your CRM, automation and reporting around your business.
+          </p>
+        </div>
+        <div class="card">
+          <h3>3. Build & Launch</h3>
+          <p>
+            Over 30–60 days we implement, connect and test everything — with minimal disruption to your team.
+          </p>
+        </div>
+        <div class="card">
+          <h3>4. Ongoing Support</h3>
+          <p>
+            If you choose, we continue to optimise your system each month with reporting reviews and updates.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section>
+      <h2 class="section-title">Manual sales vs systemised sales</h2>
+      <div class="comparison">
+        <div class="manual card">
+          <h3>Manual, ad-hoc systems</h3>
+          <ul>
+            <li>Leads lost in inboxes and spreadsheets.</li>
+            <li>Follow-up depends on you remembering.</li>
+            <li>Busy one month, quiet the next.</li>
+            <li>No clear view of what is working.</li>
+            <li>Impossible to scale without burning out.</li>
+          </ul>
+        </div>
+        <div class="systemised card">
+          <h3>Systemised with Collekit</h3>
+          <ul>
+            <li>Every lead enters a clear, trackable pipeline.</li>
+            <li>Automated follow-up and task reminders.</li>
+            <li>Steady flow of opportunities each week.</li>
+            <li>Dashboards show the real numbers.</li>
+            <li>A system built to support growth, not stress.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SUMMARY -->
+    <section id="services">
+      <h2 class="section-title">What we set up for you</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>CRM setup or rebuild</h3>
+          <p>
+            We clean and structure your CRM (HubSpot, Pipedrive, Salesforce) so that leads, deals and customers are all in one place — and easy to work with.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Automation & workflows</h3>
+          <p>
+            From first response to proposal reminders, we add automations that support your team and reduce manual chasing.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Funnel & journey optimisation</h3>
+          <p>
+            We align your lead capture, nurture and sales process so prospects always know their next step.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Reporting & dashboards</h3>
+          <p>
+            Simple, honest dashboards that tell you where leads come from, how they convert and where revenue is heading.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Team training</h3>
+          <p>
+            We train your team so they actually use the system — and know exactly what to do each day.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Optional lead generation support</h3>
+          <p>
+            Once your systems are solid, we can help with paid ads, landing pages and tracking so new leads flow into a pipeline that is ready for them.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIT CTA -->
+    <section id="audit">
+      <div class="cta-section">
+        <h2>Ready to see where your systems are leaking revenue?</h2>
+        <p>
+          Book a free Systems Audit. We will review your CRM, follow-up, funnels and reporting, and show you the simplest fixes to unlock more revenue from the leads you already have.
+        </p>
+        <a href="#contact" class="btn btn-primary">Book a Free Systems Audit</a>
+        <p class="hero-note" style="margin-top:8px;">
+          No pressure and no obligation. You keep the recommendations.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT PLACEHOLDER -->
+    <section id="contact">
+      <h2 class="section-title">Book your Systems Audit</h2>
+      <p class="section-subtitle">
+        Use the form below or email us and we’ll get back to you with times within one working day.
+      </p>
+      <!-- Replace this with your actual form embed (HubSpot, WP form, etc.) -->
+      <div class="card">
+        <p><strong>Form placeholder:</strong> this is where your audit/lead form will go.</p>
+        <p style="font-size:13px;margin-top:6px;">
+          Fields to include: name, email, business name, website, current CRM (if any), biggest systems challenge.
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div>© <span id="year"></span> Collekit. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy Policy</a> ·
+        <a href="#">Terms</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
